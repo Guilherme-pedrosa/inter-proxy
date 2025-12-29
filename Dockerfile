@@ -1,12 +1,14 @@
-FROM node:18-slim
+FROM node:18-alpine
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY package.json ./
 
-RUN npm install
+RUN npm install --production
 
-COPY . .
+COPY index.js ./
+
+ENV PORT=8080
 
 EXPOSE 8080
 
